@@ -1,4 +1,4 @@
-export class GalleryItem {
+export class GalleryImg {
   constructor( 
     public id: number,
     public title: string,

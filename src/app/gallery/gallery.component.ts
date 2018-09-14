@@ -1,9 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { GalleryService } from './gallery.service';
+import { GalleryImg } from './gallery.model';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: 'gallery.component.html',
+  providers: [GalleryService],
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit{
+  constructor(private galleryServise: GalleryService) {}
 
+  gelleryItems: GalleryImg[];
+
+  ngOnInit() {
+    this.gelleryItems = this.galleryServise.getGalleryItems();
+  }
 }

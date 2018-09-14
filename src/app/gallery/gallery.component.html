@@ -1,3 +1,9 @@
-<div class="col s12">
-  <app-gallery-item></app-gallery-item>
+<div class="container">
+  <div class="row">
+    <app-gallery-item
+      class="col s12 m6 l3"
+      *ngFor="let itemEl of gelleryItems"
+      [item]="itemEl">
+    </app-gallery-item>
+  </div>
 </div>
