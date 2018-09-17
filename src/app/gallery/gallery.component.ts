@@ -4,8 +4,7 @@ import { GalleryImg } from './gallery.model';
 
 @Component({
   selector: 'app-gallery',
-  templateUrl: 'gallery.component.html',
-  providers: [GalleryService],
+  templateUrl: 'gallery.component.html'
 })
 export class GalleryComponent implements OnInit{
   constructor(private galleryServise: GalleryService) {}
