@@ -3,7 +3,8 @@
     <app-gallery-item
       class="col s12 m6 l3"
       *ngFor="let itemEl of gelleryItems"
-      [item]="itemEl">
+      [item]="itemEl"
+      (delete)="handleDelete($event)">
     </app-gallery-item>
   </div>
 </div>

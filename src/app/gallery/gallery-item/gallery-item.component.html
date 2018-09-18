@@ -1,6 +1,9 @@
 <div class="card hoverable">
   <div class="card-image">
     <img style="max-height: 230px;" [src]="item.url">
+    <a
+    class="btn-floating halfway-fab waves-effect waves-light red center-align"
+    (click)="onClick(item.id)"><span>-</span></a>
   </div>
   <div class="card-content">
     <p>{{ item.title }}</p>

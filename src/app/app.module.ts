@@ -3,21 +3,19 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { GalleryItemComponent } from './gallery/gallery-item/gallery-item.component';
-import { GalleryService } from './gallery/gallery.service';
+import { GalleryModule } from './gallery/gallery.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    GalleryComponent,
-    GalleryItemComponent,
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    GalleryModule
   ],
-  providers: [GalleryService],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

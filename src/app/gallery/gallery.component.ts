@@ -12,6 +12,16 @@ export class GalleryComponent implements OnInit{
   gelleryItems: GalleryImg[];
 
   ngOnInit() {
-    this.gelleryItems = this.galleryServise.getGalleryItems();
+    this.gelleryItems = this.galleryServise.getGalleryItems()
+    this.galleryServise.galleryChenged.subscribe(
+      (galleryImgs: GalleryImg[]) => {
+        this.gelleryItems = galleryImgs;
+      }
+    );
+  }
+
+  handleDelete(id: number) {
+    const index = this.gelleryItems.findIndex(item => item.id === id);
+    this.galleryServise.deleteImgByIndex(index);
   }
 }

@@ -1,4 +1,5 @@
 import { GalleryImg } from "./gallery.model";
+import { EventEmitter } from "@angular/core";
 
 export class GalleryService {
   private galleryItems: GalleryImg[] = [
@@ -54,7 +55,14 @@ export class GalleryService {
     }
   ];
 
+  galleryChenged = new EventEmitter<GalleryImg[]>();
+
   getGalleryItems() {
     return this.galleryItems.slice();
+  }
+
+  deleteImgByIndex(index: number, count: number = 1) {
+    this.galleryItems.splice(index, count);
+    this.galleryChenged.emit(this.galleryItems.slice());
   }
 }
