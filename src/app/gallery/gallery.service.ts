@@ -61,6 +61,11 @@ export class GalleryService {
     return this.galleryItems.slice();
   }
 
+  deleteImgById(imgId: number) {
+    this.galleryItems = this.galleryItems.filter(({ id }) => id !== imgId );
+    this.galleryChenged.emit(this.galleryItems.slice());
+  }
+
   deleteImgByIndex(index: number, count: number = 1) {
     this.galleryItems.splice(index, count);
     this.galleryChenged.emit(this.galleryItems.slice());

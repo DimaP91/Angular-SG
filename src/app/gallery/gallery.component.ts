@@ -20,8 +20,10 @@ export class GalleryComponent implements OnInit{
     );
   }
 
-  handleDelete(id: number) {
-    const index = this.gelleryItems.findIndex(item => item.id === id);
-    this.galleryServise.deleteImgByIndex(index);
+  handleDelete(imgId: number) {
+    // const index = this.gelleryItems.findIndex(({ id }) => id === imgId);
+    // this.galleryServise.deleteImgByIndex(index);
+    
+    this.galleryServise.deleteImgById(imgId);
   }
 }
