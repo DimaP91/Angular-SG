@@ -1,6 +1,6 @@
 <form
     class="col s12"
-    (ngSubmit)="onAddNewImg(form)"
+    (ngSubmit)="onAddNewImg(form); form.reset()"
     #form="ngForm">
     <div class="input-field col s12">
         <input

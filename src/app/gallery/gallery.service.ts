@@ -70,4 +70,11 @@ export class GalleryService {
     this.galleryItems.splice(index, count);
     this.galleryChenged.emit(this.galleryItems.slice());
   }
+
+  addNewImg(title: string, url: string) {
+    const { id: currentLastIdCount } = this.galleryItems[this.galleryItems.length - 1];
+    const newImg = new GalleryImg(currentLastIdCount, title, url)
+    this.galleryItems.push(newImg);
+    this.galleryChenged.emit(this.galleryItems.slice());
+  }
 }
