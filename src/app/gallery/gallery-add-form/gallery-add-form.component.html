@@ -1,15 +1,31 @@
-<form class="col s12">
+<form
+    class="col s12"
+    (ngSubmit)="onAddNewImg(form)"
+    #form="ngForm">
     <div class="input-field col s12">
-        <input id="title" type="text" class="validate">
+        <input
+            id="title"
+            type="text"
+            class="validate"
+            name="title"
+            required
+            ngModel>
         <label class="active" for="title">Title</label>
     </div>
     <div class="input-field col s12">
-        <input id="url" type="text" class="validate">
+        <input
+            id="url"
+            type="text"
+            class="validate"
+            name="url"
+            required
+            ngModel>
         <label for="url">Url</label>
     </div>
     <div class="center-align">
         <button
             class="waves-effect waves-light btn-large"
-            (click)="onAddNewImg($event); false">Add new image</button>
+            type="submit"
+            [disabled]="!form.valid">Add new image</button>
     </div>
 </form>

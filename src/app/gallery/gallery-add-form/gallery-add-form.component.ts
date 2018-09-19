@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-gallery-add-form',
@@ -6,6 +7,11 @@ import { Component } from "@angular/core";
 })
 export class GalleryAddForm {
 
-  onAddNewImg() {
+  onAddNewImg(form: NgForm) {
+    const { value: { title, url } } = form;
+    console.log(
+      'titleInput:', title,
+      'urlInput:', url
+    )
   }
 }

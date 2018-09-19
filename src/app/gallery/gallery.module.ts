@@ -4,6 +4,7 @@ import { GalleryComponent } from './gallery.component';
 import { GalleryItemComponent } from './gallery-item/gallery-item.component';
 import { GalleryService } from './gallery.service';
 import { GalleryAddForm } from './gallery-add-form/gallery-add-form.component';
+import { FormsModule } from '@angular/forms';
 
 const components = [
   GalleryComponent,
@@ -13,7 +14,8 @@ const components = [
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   declarations: [
     ...components
