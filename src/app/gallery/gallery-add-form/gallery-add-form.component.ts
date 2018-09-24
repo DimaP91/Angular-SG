@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { GalleryService } from "../gallery.service";
+import { ValidateUrl } from "./url.validator";
 
 @Component({
   selector: 'app-gallery-add-form',
@@ -14,7 +15,7 @@ export class GalleryAddForm implements OnInit {
   ngOnInit() {
     this.galleryForm = new FormGroup({
       'title': new FormControl(null, Validators.required),
-      'url': new FormControl(null, Validators.required)
+      'url': new FormControl(null, [Validators.required, ValidateUrl])
     });
   }
 
