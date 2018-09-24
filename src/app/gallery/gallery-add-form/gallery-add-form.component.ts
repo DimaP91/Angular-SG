@@ -22,5 +22,6 @@ export class GalleryAddForm implements OnInit {
   onSubmit() {
     const { value: { title, url } } = this.galleryForm;
     this.galleryService.addNewImg(title, url);
+    this.galleryForm.reset();
   }
 }
