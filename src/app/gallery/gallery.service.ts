@@ -74,7 +74,7 @@ export class GalleryService {
   addNewImg(title: string, url: string) {
     const { id: currentLastIdCount } = this.galleryItems[this.galleryItems.length - 1];
     const newImg = new GalleryImg(currentLastIdCount + 1, title, url)
-    this.galleryItems.push(newImg);
+    this.galleryItems.unshift(newImg);
     this.galleryChenged.emit(this.galleryItems.slice());
   }
 }
