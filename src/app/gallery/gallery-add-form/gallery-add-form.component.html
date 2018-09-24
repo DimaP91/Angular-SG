@@ -1,15 +1,13 @@
 <form
     class="col s12"
-    (ngSubmit)="onAddNewImg(form); form.reset()"
-    #form="ngForm">
+    [formGroup]="galleryForm"
+    (ngSubmit)="onSubmit()">
     <div class="input-field col s12">
         <input
             id="title"
             type="text"
             class="validate"
-            name="title"
-            required
-            ngModel>
+            formControlName="title">
         <label class="active" for="title">Title</label>
     </div>
     <div class="input-field col s12">
@@ -17,15 +15,13 @@
             id="url"
             type="text"
             class="validate"
-            name="url"
-            required
-            ngModel>
+            formControlName="url">
         <label for="url">Url</label>
     </div>
     <div class="center-align">
         <button
             class="waves-effect waves-light btn-large"
             type="submit"
-            [disabled]="!form.valid">Add new image</button>
+            [disabled]="!galleryForm.valid">Add new image</button>
     </div>
 </form>
