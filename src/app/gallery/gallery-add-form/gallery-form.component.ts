@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { GalleryService } from "../gallery.service";
-import { ValidateUrl } from "./url.validator";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { GalleryService } from '../gallery.service';
+import { ValidateUrl } from './url.validator';
 
 @Component({
-  selector: 'app-gallery-add-form',
-  templateUrl: 'gallery-add-form.component.html'
+  selector: 'app-gallery-form',
+  templateUrl: 'gallery-form.component.html'
 })
-export class GalleryAddForm implements OnInit {
+export class GalleryFormComponent implements OnInit {
   galleryForm: FormGroup;
 
   constructor(private galleryService: GalleryService) {}

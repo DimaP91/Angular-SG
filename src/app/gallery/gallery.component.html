@@ -7,9 +7,13 @@
           [item]="itemEl"
           (delete)="handleDelete($event)">
         </app-gallery-item>
+        <ng-template [ngIf]="gelleryItems.length < 1">
+          <h3>You don't have any saved images.</h3>
+          <a class="waves-effect waves-light btn" (click)="onRefresh()">Refresh gallery</a>
+        </ng-template>
     </main>
     <aside class="col s3">
-        <app-gallery-add-form></app-gallery-add-form>
+        <app-gallery-form></app-gallery-form>
     </aside>
   </div>
 </div>

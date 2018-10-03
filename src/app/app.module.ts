@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { GalleryModule } from './gallery/gallery.module';
@@ -12,7 +12,8 @@ import { GalleryModule } from './gallery/gallery.module';
   ],
   imports: [
     BrowserModule,
-    GalleryModule
+    GalleryModule,
+    HttpClientModule,
   ],
   providers: [
   ],
