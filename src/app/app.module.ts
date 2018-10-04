@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { GalleryModule } from './gallery/gallery.module';
+import { FakeDataService } from './shared/fake-data.service';
 
 
 @NgModule({
