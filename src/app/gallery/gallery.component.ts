@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { GalleryService } from './gallery.service';
 import { GalleryImg } from './gallery.model';
@@ -7,25 +8,26 @@ import { GalleryImg } from './gallery.model';
   selector: 'app-gallery',
   templateUrl: 'gallery.component.html'
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit, OnDestroy {
   constructor(private galleryServise: GalleryService) {}
-
   gelleryItems: GalleryImg[];
+  subscription: Subscription;
+
 
   ngOnInit() {
     this.gelleryItems = this.galleryServise.getGalleryItems();
-    this.galleryServise.galleryChenged.subscribe(
+    this.subscription = this.galleryServise.galleryChenged.subscribe(
       (galleryImgs: GalleryImg[]) => {
         this.gelleryItems = galleryImgs;
       }
     );
   }
 
-  onRefresh() {
-    this.galleryServise.clearData();
-  }
-
   handleDelete(imgId: number) {
     this.galleryServise.deleteImgById(imgId);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

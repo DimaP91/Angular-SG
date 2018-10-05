@@ -2,32 +2,23 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { GalleryImg } from './gallery.model';
-import { LocalStorageService } from '../shared/local-storage.service';
-import { FakeDataService } from '../shared/fake-data.service';
+import { DataStorageService } from '../shared/data-storage.service';
 
+const API_ROUTE = 'gallery';
 
 @Injectable()
 export class GalleryService {
-  private STORAGE_KEY = 'galleryItem';
-
   private galleryItems: GalleryImg[] = [];
-
   galleryChenged = new Subject<GalleryImg[]>();
 
-  constructor(
-    private localStorageService: LocalStorageService,
-    private fakeDataService: FakeDataService) {
-    this.fetchData();
-  }
-
-  setFakeGalleryItems() {
-    this.fakeDataService.getGalleryItems()
-      .then(
-        (res: GalleryImg[]) => {
-          this.galleryItems = res;
-          this.galleryChenged.next(this.galleryItems.slice());
-        }
-    );
+  constructor(private dataStorageService: DataStorageService) {
+      this.dataStorageService.get(API_ROUTE)
+        .subscribe(
+          (res: GalleryImg[]) => {
+            this.galleryItems = res;
+            this.galleryChenged.next(this.galleryItems.slice());
+          }
+      );
   }
 
   getGalleryItems() {
@@ -35,32 +26,19 @@ export class GalleryService {
   }
 
   deleteImgById(imgId: number) {
-    this.galleryItems = this.galleryItems.filter(({ id }) => id !== imgId );
+    this.dataStorageService.delete(API_ROUTE, imgId).subscribe();
     this.galleryChenged.next(this.galleryItems.slice());
-    this.saveData();
+
   }
 
   addNewImg(title: string, url: string) {
     const { id: currentLastIdCount } = this.galleryItems[this.galleryItems.length - 1];
     const newImg = new GalleryImg(currentLastIdCount + 1, title, url);
-    this.galleryItems.unshift(newImg);
+    this.dataStorageService.post(API_ROUTE, newImg)
+      .subscribe(
+        res => console.log(res),
+        e => console.log(e)
+      );
     this.galleryChenged.next(this.galleryItems.slice());
-    this.saveData();
-  }
-
-  saveData() {
-    this.localStorageService.save(this.STORAGE_KEY, this.galleryItems);
-  }
-
-  fetchData() {
-    const data = this.localStorageService.get(this.STORAGE_KEY);
-    data != null
-      ? this.galleryItems = data
-      : this.setFakeGalleryItems();
-  }
-
-  clearData() {
-    this.localStorageService.clear();
-    this.setFakeGalleryItems();
   }
 }
