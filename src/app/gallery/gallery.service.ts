@@ -12,13 +12,17 @@ export class GalleryService {
   galleryChenged = new Subject<GalleryImg[]>();
 
   constructor(private dataStorageService: DataStorageService) {
-      this.dataStorageService.get(API_ROUTE)
-        .subscribe(
-          (res: GalleryImg[]) => {
-            this.galleryItems = res;
-            this.galleryChenged.next(this.galleryItems.slice());
-          }
-      );
+     this.fetchData();
+  }
+
+  fetchData() {
+    this.dataStorageService.get(API_ROUTE)
+    .subscribe(
+      (res: GalleryImg[]) => {
+        this.galleryItems = res;
+        this.galleryChenged.next(this.galleryItems.slice());
+      }
+  );
   }
 
   getGalleryItems() {
@@ -26,19 +30,20 @@ export class GalleryService {
   }
 
   deleteImgById(imgId: number) {
-    this.dataStorageService.delete(API_ROUTE, imgId).subscribe();
-    this.galleryChenged.next(this.galleryItems.slice());
-
+    this.dataStorageService.delete(API_ROUTE, imgId)
+      .then(
+        () => this.fetchData()
+      );
   }
 
   addNewImg(title: string, url: string) {
-    const { id: currentLastIdCount } = this.galleryItems[this.galleryItems.length - 1];
-    const newImg = new GalleryImg(currentLastIdCount + 1, title, url);
+    const id = this.galleryItems.length + 1;
+    const newImg = new GalleryImg(id, title, url);
     this.dataStorageService.post(API_ROUTE, newImg)
-      .subscribe(
-        res => console.log(res),
-        e => console.log(e)
+      .then(
+        () =>  {
+          this.fetchData();
+        }
       );
-    this.galleryChenged.next(this.galleryItems.slice());
   }
 }

@@ -13,10 +13,10 @@ export class DataStorageService {
   }
 
   post(route: string, body: any) {
-   return this.http.post(route, body);
+   return this.http.post(route, body).toPromise();
   }
 
   delete(route: string, id: number) {
-    return this.http.delete(`${route}/${id}`);
+    return this.http.delete(`${route}/${id}`).toPromise();
   }
 }
