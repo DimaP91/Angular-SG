@@ -17,16 +17,20 @@ export class GalleryService {
 
   fetchData() {
     this.dataStorageService.get(API_ROUTE)
-    .subscribe(
-      (res: GalleryImg[]) => {
-        this.galleryItems = res;
-        this.galleryChenged.next(this.galleryItems.slice());
-      }
-  );
+      .subscribe(
+        (res: GalleryImg[]) => {
+          this.galleryItems = res.reverse();
+          this.galleryChenged.next(this.galleryItems.slice());
+        }
+    );
   }
 
   getGalleryItems() {
     return this.galleryItems.slice();
+  }
+
+  getImgById(Imgid: number) {
+    return this.galleryItems.filter(({ id }) => id === Imgid)[0];
   }
 
   deleteImgById(imgId: number) {
@@ -37,8 +41,8 @@ export class GalleryService {
   }
 
   addNewImg(title: string, url: string) {
-    const id = this.galleryItems.length + 1;
-    const newImg = new GalleryImg(id, title, url);
+    const { id } = this.galleryItems[0];
+    const newImg = new GalleryImg(id + 1, title, url);
     this.dataStorageService.post(API_ROUTE, newImg)
       .then(
         () =>  {

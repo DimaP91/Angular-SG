@@ -6,26 +6,23 @@ import { GalleryComponent } from './gallery.component';
 import { GalleryItemComponent } from './gallery-item/gallery-item.component';
 import { GalleryFormComponent } from './gallery-add-form/gallery-form.component';
 import { GalleryService } from './gallery.service';
-
-const components = [
-  GalleryComponent,
-  GalleryItemComponent,
-  GalleryFormComponent,
-];
+import { GalleryRoutingModule } from './gallery-routing.module';
+import { GalleryImgComponent } from './gallery-img/gallery-img.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GalleryRoutingModule,
   ],
   declarations: [
-    ...components
-  ],
-  exports: [
-    ...components
+    GalleryComponent,
+    GalleryItemComponent,
+    GalleryFormComponent,
+    GalleryImgComponent,
   ],
   providers: [
-    GalleryService
+    GalleryService,
   ]
 })
 export class GalleryModule { }

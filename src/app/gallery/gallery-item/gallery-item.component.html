@@ -1,11 +1,10 @@
-<div class="card hoverable">
-  <div class="card-image">
-    <img [src]="item.url">
-    <a
-    class="btn-floating halfway-fab waves-effect waves-light red center-align"
-    (click)="onClick(item.id)"><span>-</span></a>
+<a [routerLink]="item.id" style="cursor: pointer; color: black;">
+  <div class="card hoverable">
+    <div class="card-image">
+      <img [src]="item.url">
+    </div>
+    <div class="card-content">
+      <p>{{ item.title }}</p>
+    </div>
   </div>
-  <div class="card-content">
-    <p>{{ item.title }}</p>
-  </div>
-</div>
+</a>

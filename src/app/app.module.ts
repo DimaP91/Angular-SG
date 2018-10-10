@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { GalleryModule } from './gallery/gallery.module';
 import { ApiInterceptor } from './shared/api.interceptor';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ApiInterceptor } from './shared/api.interceptor';
     BrowserModule,
     GalleryModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     {

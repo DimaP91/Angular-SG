@@ -10,9 +10,4 @@ import { GalleryImg } from '../gallery.model';
 })
 export class GalleryItemComponent {
   @Input() item: GalleryImg;
-  @Output() delete = new EventEmitter<number>();
-
-  onClick(id: number) {
-    this.delete.emit(id);
-  }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { GalleryService } from '../gallery.service';
 import { ValidateUrl } from './url.validator';
 
@@ -10,7 +12,9 @@ import { ValidateUrl } from './url.validator';
 export class GalleryFormComponent implements OnInit {
   galleryForm: FormGroup;
 
-  constructor(private galleryService: GalleryService) {}
+  constructor(private galleryService: GalleryService,
+              private router: Router,
+              private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.galleryForm = new FormGroup({
@@ -23,5 +27,6 @@ export class GalleryFormComponent implements OnInit {
     const { value: { title, url } } = this.galleryForm;
     this.galleryService.addNewImg(title, url);
     this.galleryForm.reset();
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

@@ -23,10 +23,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
     );
   }
 
-  handleDelete(imgId: number) {
-    this.galleryServise.deleteImgById(imgId);
-  }
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

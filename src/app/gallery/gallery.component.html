@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <main class="col s9">
+    <main class="col s10">
         <app-gallery-item
           class="col s12 m6 l3"
           *ngFor="let itemEl of gelleryItems"
@@ -11,8 +11,8 @@
           <h3>You don't have any saved images.</h3>
         </ng-template>
     </main>
-    <aside class="col s3">
-        <app-gallery-form></app-gallery-form>
+    <aside class="col s2" style="margin: .5rem 0 1rem 0;">
+      <a routerLink="new" routerLinkActive="router-link-active"  class="waves-effect waves-light btn-large">Add new</a>
     </aside>
   </div>
 </div>
