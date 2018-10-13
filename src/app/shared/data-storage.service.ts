@@ -12,6 +12,10 @@ export class DataStorageService {
     return this.http.get(route);
   }
 
+  getById(route: string, id: number) {
+    return this.http.get(`${route}/${id}`);
+  }
+
   post(route: string, body: any) {
    return this.http.post(route, body).toPromise();
   }

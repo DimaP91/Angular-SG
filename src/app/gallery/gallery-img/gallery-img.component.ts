@@ -15,11 +15,7 @@ export class GalleryImgComponent implements OnInit {
               private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.params.subscribe(
-      ({ id }) => {
-        this.galleryImg = this.galleryService.getImgById(+id);
-      }
-    );
+    this.galleryImg = this.route.snapshot.data.imgItem;
   }
 
   onDelete(id: number) {

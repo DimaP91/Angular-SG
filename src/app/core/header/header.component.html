@@ -1,0 +1,12 @@
+<nav>
+  <div class="nav-wrapper">
+    <a routerLink='' class="brand-logo center">GalleryLogo</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li routerLinkActive="active" (click)="isAuth()"><a routerLink='gallery'>gallery</a></li>
+      <li routerLinkActive="active">
+        <a *ngIf="auth; else signin" (click)="onSignOut()">Sign out</a>
+        <ng-template #signin><a (click)="onSignIn()">Sign in</a></ng-template>
+      </li>
+    </ul>
+  </div>
+</nav>

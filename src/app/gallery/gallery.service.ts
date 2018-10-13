@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, of } from 'rxjs';
 
 import { GalleryImg } from './gallery.model';
 import { DataStorageService } from '../shared/data-storage.service';
@@ -26,11 +26,11 @@ export class GalleryService {
   }
 
   getGalleryItems() {
-    return this.galleryItems.slice();
+    return this.dataStorageService.get(API_ROUTE);
   }
 
   getImgById(Imgid: number) {
-    return this.galleryItems.filter(({ id }) => id === Imgid)[0];
+    return this.dataStorageService.getById(API_ROUTE, Imgid);
   }
 
   deleteImgById(imgId: number) {
