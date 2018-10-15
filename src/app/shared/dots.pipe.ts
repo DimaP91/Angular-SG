@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DotsPipe implements PipeTransform {
   transform(value: string, maxLength: number): string {
-    return `${value.slice(0, maxLength)}...`;
+    return value.length > maxLength ? `${value.slice(0, maxLength)}...` : value;
   }
 }

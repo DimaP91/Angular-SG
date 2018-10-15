@@ -35,7 +35,7 @@ export class GalleryService {
 
   deleteImgById(imgId: number) {
     this.dataStorageService.delete(API_ROUTE, imgId)
-      .then(
+      .subscribe(
         () => this.fetchData()
       );
   }
@@ -44,7 +44,7 @@ export class GalleryService {
     const { id } = this.galleryItems[0];
     const newImg = new GalleryImg(id + 1, title, url);
     this.dataStorageService.post(API_ROUTE, newImg)
-      .then(
+      .subscribe(
         () =>  {
           this.fetchData();
         }
