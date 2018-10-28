@@ -1,0 +1,10 @@
+<a [routerLink]="item.id" style="cursor: pointer; color: black;">
+  <div class="card hoverable">
+    <div class="card-image">
+      <img [src]="item.url">
+    </div>
+    <div class="card-content">
+      <p>{{ item.title | dots:14 }}</p>
+    </div>
+  </div>
+</a>
